@@ -77,28 +77,27 @@ template < class T >
 void StackLinked<T>::push(T* item)
 {
 	
+	
  NextNode<T>* node = new NextNode<T> (item);
    
    node->setNext(top);
 	top = node;
-
+	sze++;
 
 }
 
 template < class T >
 T* StackLinked<T>::pop()
 {
-   if (sze == 0) return NULL;
-
-   NextNode<T>* curr = top;
-   T* item = top->get(item);
-   top = item->getNext();
-
-	delete curr;
 	
+	if(sze == 0) return NULL;
+	
+	T* item = top->getItem();
+	top = top->getNext();
 	sze--;
-
-
+	
+	return item;
+	
 }
 
 #endif

@@ -1,7 +1,7 @@
 #include "Maze.h"
 #include "Color.h"
 #include "Rect.h"
-
+#include "Cell.h"
 #include <windows.h>  //for the sleep function
 
 #include <iostream>
@@ -51,7 +51,8 @@ Cell* Maze::processBackTrack(StackLinked<Cell>* stack)
    {
 		Cell* next_cell = stack->pop();
 		maze->setElement(next_cell->getRow(), next_cell->getCol(), BACKTRACK);
-      //remove the cell and set the maze location to BACKTRACK (the maze is a Matrix)
+		delete next_cell;
+	  //remove the cell and set the maze location to BACKTRACK (the maze is a Matrix)
 		top_cell = stack->peek();
       //look at the next cell
       Sleep(75);      //slow down the maze traversal
@@ -67,10 +68,10 @@ bool Maze::isSolved(Cell* curr_cell, StackLinked<Cell>* stack)
    //get row and col from curr_cell
 	int row = curr_cell->getRow();
 	int col = curr_cell->getCol();
-	bool isSolved = false;
+
 
    //have you solved the maze? (check that we are at the bottom right maze location and that it is a SPACE
-   if ( (row == width) && (col == height) && maze->getElement(row, col) == SPACE)  
+   if ( (row == maze->getNumRows()) && (col == maze->getNumCols()) && maze->getElement(row, col) == SPACE)  
    {
 		maze->setElement(row, col, TRIED);
 		
@@ -82,11 +83,11 @@ bool Maze::isSolved(Cell* curr_cell, StackLinked<Cell>* stack)
 
       gui->update();
       //return the appropriate boolean
-		isSolved = true;
+		return true;
 		
    }
 
-	return isSolved;
+	return false;
    //return the appropriate boolean
 }
 
@@ -95,8 +96,9 @@ void Maze::processSolution(StackLinked<Cell>* stack)
 {
    //DO THIS
    //the stack has the solution path stored
-   Cell* last_cell = stack->peek();
-   while(last_cell != NULL )
+   Cell* last_cell;
+   int count = 0;
+   while(stack->peek() != NULL )
    {
       //get the next cell from the stack
 		last_cell = stack->pop();
@@ -105,10 +107,14 @@ void Maze::processSolution(StackLinked<Cell>* stack)
       
       //update the maze location to PATH
 		maze->setElement(row, col, PATH);
-		
-
+		count++;
+		//cout << "Test...\n";
+		cout << count << endl;
       gui->update();
+	  cout << "Test2\n";
    }
+   
+   cout << "\nLoop is finished....\n";
 }
 
 bool Maze::traverse()
@@ -132,7 +138,7 @@ bool Maze::traverse()
 
       //call a method in the Cell class to give you a new Cell in a new direction relative to top_cell (initially, DOWN)
       //DO THIS
-      Cell* curr_cell = nextCell();
+      Cell* curr_cell = top_cell->nextCell();
 
       //does this new Cell solve the maze?
       done = isSolved(curr_cell, &stack);
@@ -158,8 +164,8 @@ bool Maze::traverse()
       {
          //DO THIS
          //delete the cell
-		Cell* this_cell = stack.pop();
-		delete this_cell;
+		//Cell* this_cell = stack.pop();
+		delete curr_cell;
       }
    }
 
