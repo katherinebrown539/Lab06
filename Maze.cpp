@@ -41,13 +41,14 @@ Cell* Maze::processBackTrack(StackLinked<Cell>* stack)
 {
    //DO THIS
    //you may need to back through several cells
-
+	
    Cell* top_cell = stack->peek();  
+
    //top_cell is NULL if the stack is empty
    //top_cell's direction is DEAD_END if you need to keep backtracking
    
 
-   while (top_cell->getDir() == DEAD_END)  //need to back track
+   while (top_cell != NULL && top_cell->getDir() == DEAD_END)  //need to back track
    {
 		Cell* next_cell = stack->pop();
 		maze->setElement(next_cell->getRow(), next_cell->getCol(), BACKTRACK);
@@ -107,14 +108,11 @@ void Maze::processSolution(StackLinked<Cell>* stack)
       
       //update the maze location to PATH
 		maze->setElement(row, col, PATH);
-		count++;
-		//cout << "Test...\n";
-		cout << count << endl;
+		
       gui->update();
-	  cout << "Test2\n";
+	  
    }
    
-   cout << "\nLoop is finished....\n";
 }
 
 bool Maze::traverse()

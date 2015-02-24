@@ -17,14 +17,14 @@ LINK = $(CC) $(LIB_DIRS) -o
 
 all: Project
 
-Project: 		$(FILES)
+Project: 	$(FILES)
 			$(LINK) $(EXECUTABLE) $(FILES) $(LIBS)
 
-Cell.o:			Cell.h Cell.cpp
+Cell.o:		Cell.h Cell.cpp
 			$(COMPILE) Cell.cpp
 
-MazeGUI.o:		MazeGUI.cpp MazeGUI.h
+MazeGUI.o:	MazeGUI.cpp MazeGUI.h
 			$(COMPILE)	MazeGUI.cpp
 
-Maze.o:			Maze.cpp StackLinked.h Maze.h
+Maze.o:		Maze.cpp StackLinked.h Maze.h
 			$(COMPILE)	Maze.cpp
