@@ -1,3 +1,6 @@
+//Katherine (Katie) Brown and Samuel Wehunt
+//https://github.com/kebrown46/Lab06
+
 #if !defined (MAZE_H)
 #define MAZE_H
 

@@ -1,3 +1,6 @@
+//Katherine (Katie) Brown and Samuel Wehunt
+//https://github.com/kebrown46/Lab06
+
 #if !defined (NULL)
    #define NULL 0
 #endif

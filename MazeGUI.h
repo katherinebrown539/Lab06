@@ -1,3 +1,6 @@
+//Katherine (Katie) Brown and Samuel Wehunt
+//https://github.com/kebrown46/Lab06
+
 #ifndef MAZEGUI_H
 #define MAZEGUI_H
 

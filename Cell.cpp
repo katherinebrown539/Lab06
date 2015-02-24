@@ -1,3 +1,6 @@
+//Katherine (Katie) Brown and Samuel Wehunt
+//https://github.com/kebrown46/Lab06
+
 #include "Cell.h"
 
 Cell::Cell(int r, int c)

@@ -1,3 +1,6 @@
+//Katherine (Katie) Brown and Samuel Wehunt
+//https://github.com/kebrown46/Lab06
+
 #if !defined (NEXTNODE_H)
 #define NEXTNODE_H
 
