@@ -28,6 +28,3 @@ MazeGUI.o:		MazeGUI.cpp MazeGUI.h
 
 Maze.o:			Maze.cpp StackLinked.h Maze.h
 			$(COMPILE)	Maze.cpp
-
-
-
